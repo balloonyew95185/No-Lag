@@ -1,6 +1,6 @@
 
 ## Load
-function ./load:
+function ~/load:
     scoreboard objectives add nola.data dummy
 
     execute unless score %installed nola.data matches 1 run function ./install
@@ -8,7 +8,7 @@ function ./load:
 
 
 ## Install
-function ./install:
+function ~/install:
     scoreboard players set %installed nola.data 1
 
     # Add scoreboards
@@ -17,14 +17,14 @@ function ./install:
     scoreboard players set $version nola.data ctx.meta.version
 
     # Sent installation message after 4 seconds
-    schedule function ./send_message 4s replace:
+    schedule function ~/send_message 4s replace:
       tellraw @a:
           text: f"Installed {ctx.project_name} {ctx.project_version} from {ctx.project_author}!"
           color: "green"
 
 
 ## First Join
-function ./first_join:
+function ~/first_join:
     execute store result score .temp_0 nola.data run data get entity @s DataVersion
     execute unless score .temp_0 nola.data matches 3337:
         tellraw @s [
@@ -38,7 +38,7 @@ function ./first_join:
             }
         ]
 
-advancement ./first_join {
+advancement ~/first_join {
     "criteria": {
         "requirement": {
             "trigger": "minecraft:tick"
@@ -51,7 +51,7 @@ advancement ./first_join {
 
 
 ## Uninstall
-function ./uninstall:
+function ~/uninstall:
     scoreboard objectives remove nola.data
 
     tellraw @a:

@@ -16,7 +16,6 @@ data_pack:
 
 
 pipeline:
-  - beet.contrib.rename_files
   - mecha
   - plugins.remove_empty_functions
   - plugins.installation_advancement
@@ -29,13 +28,6 @@ meta:
   bolt:
     entrypoint:
       - ""
-
-  rename_files:
-    data_pack:
-      match:
-        functions: "nola:*"
-      find: '((?!.*-).+)'
-      replace: '\1/child'
 
   installation_advancement:
     icon:
